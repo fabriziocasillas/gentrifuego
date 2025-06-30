@@ -1,6 +1,9 @@
 extends Node2D
-func _spawn_mob():
-	var mob_scene = preload("res://escenas/mob.tscn")
-	var mob = mob_scene.instantiate()
-	mob.player = $Player  
+
+func _ready():
+	spawn_mob()
+
+func spawn_mob():
+	var mob = preload("res://escenas/mob.tscn").instantiate()
+	mob.player = $Player
 	add_child(mob)
