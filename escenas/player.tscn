@@ -16,8 +16,15 @@ scale = Vector2(3.03125, 2.625)
 texture = ExtResource("1_esbpa")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_right = 4.0
-offset_bottom = 27.0
+unique_name_in_owner = true
+modulate = Color(0.464292, 0.767287, 0.55899, 1)
+self_modulate = Color(0.232085, 0.545175, 0.326366, 1)
+offset_left = -41.0
+offset_top = -60.0
+offset_right = 62.0
+offset_bottom = -33.0
+max_value = 3.0
+value = 3.0
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
