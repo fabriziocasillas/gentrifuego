@@ -1,0 +1,28 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot-specific
+.import/
+.export/
+.export_presets.cfg
+
+# Temporary files
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Mono (C#)
+mono/
+*.csproj
+*.sln
+*.user
+*.dll
+*.mdb
+# Builds
+/bin/
+*.exe
+*.apk
+*.zip
