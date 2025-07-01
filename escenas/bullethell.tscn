@@ -1,14 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://chvvw3lntqbug"]
+[gd_scene load_steps=3 format=3 uid="uid://chvvw3lntqbug"]
 
 [ext_resource type="PackedScene" uid="uid://cl22ggaym5eui" path="res://escenas/player.tscn" id="1_bp5up"]
 [ext_resource type="Script" uid="uid://cbnfdau5hr5he" path="res://escenas/game.gd" id="1_l5nui"]
-[ext_resource type="PackedScene" uid="uid://b6asusdgttl3y" path="res://escenas/mob.tscn" id="2_l5nui"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_l5nui")
 
 [node name="Player" parent="." instance=ExtResource("1_bp5up")]
 position = Vector2(296, 296)
-
-[node name="Mob" parent="." instance=ExtResource("2_l5nui")]
-position = Vector2(672, 281)

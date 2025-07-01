@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci6kx21g0ttsf"]
+
+[ext_resource type="Script" uid="uid://cbc7qhv3ujrxw" path="res://scripts/bullet.gd" id="1_1dqwh"]
+[ext_resource type="Texture2D" uid="uid://db2gnlqc7cnpg" path="res://sprites/dolar.png" id="2_blkrf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbwb3"]
+size = Vector2(16, 21)
+
+[node name="bullet" type="Area2D"]
+script = ExtResource("1_1dqwh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_mbwb3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-2.38419e-07, -1)
+scale = Vector2(3.28125, 3.46875)
+texture = ExtResource("2_blkrf")

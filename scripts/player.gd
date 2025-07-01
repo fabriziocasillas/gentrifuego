@@ -1,13 +1,19 @@
 extends CharacterBody2D
 var health = 3.0
 signal health_depleted
+@export var rotation_speed = 1.5
+var rotation_direction = 0
+var z = 0
+signal attacked
+
+
 
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	const DAMAGE_RATE = 0.5
 	velocity = direction * 700
-
+	look_at(global_position + direction)
 	move_and_slide()
 
 
