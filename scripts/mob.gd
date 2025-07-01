@@ -7,11 +7,9 @@ var health = 3
 var player: CharacterBody2D
 
 func _ready() -> void:
-	print($Player)
 	disappear_after_delay()
 
 func _physics_process(delta):
-	print($Player)
 
 	if player:
 		var direction = global_position.direction_to(player.global_position)

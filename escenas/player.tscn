@@ -33,3 +33,5 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(7, 4)
 shape = SubResource("RectangleShape2D_kkt6c")
+
+[node name="Camera2D" type="Camera2D" parent="."]

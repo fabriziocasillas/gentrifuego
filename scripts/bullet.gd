@@ -1,26 +1,26 @@
+### Bullet.gd ###
 extends Node2D
 
-var dir = Vector2(1, 0)
+# Seconds of a bullet
+var speed = 150
 
-var bullet_speed = 1
-var final_speed = 100
+# Physical process method called 60 times/second
+func _physics_process(delta):
+	# Move the bullet every frame by adding the current bullet position to..
+	# the current bullet direction x the current bullet direction x..
+	# the speed of the bullet per second x 1 frame of time
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass 
+	position += Vector2.RIGHT.rotated(rotation) * speed * delta
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	self.position += dir * delta * bullet_speed
-
-	if ($R.is_colliding()):
-		var collid = $RayCast2D.get_collider().get_parent()
-		if (collid.type == "PLAYER"):
-			position += Vector2(2000, 2000)
-		
-
-
-func screen_exited():
-	get_parent().remove_child(self)
+func _on_Bullet_body_entered(body):
+	# free Bullet
 	queue_free()
+	
+
+func disappear_after_delay() -> void:
+	await get_tree().create_timer(5).timeout
+	emit_signal("mob_died")
+	queue_free()
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	disappear_after_delay()
