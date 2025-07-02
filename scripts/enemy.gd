@@ -41,5 +41,3 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 		offset_y *= -1
 
 	global_position = direction + Vector2(offset_x, offset_y)
-	print("el enemigo piensa que el player esta en player esta en ")
-	print(direction)
