@@ -39,4 +39,4 @@ func _on_enemies_timeout() -> void:
 	print("viene nuevo enemgo")
 	if(enemies<5):
 		spawn_enemy()
-		enemies += enemies
+		enemies = enemies +1

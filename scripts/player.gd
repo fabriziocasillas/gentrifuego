@@ -9,13 +9,17 @@ signal positionb(pos: Vector2)
 
 
 
-
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	const DAMAGE_RATE = 0.5
 	velocity = direction * 700
-	look_at(global_position + direction)
+
+	if direction != Vector2.ZERO:
+		look_at(global_position + direction)
+		rotation -= deg_to_rad(270)  # Ajuste de 90 grados
+
 	move_and_slide()
+
 
 
 		
