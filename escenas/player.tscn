@@ -16,6 +16,7 @@ texture = ExtResource("2_kkt6c")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0.464292, 0.767287, 0.55899, 1)
 self_modulate = Color(0.232085, 0.545175, 0.326366, 1)
 offset_left = -41.0

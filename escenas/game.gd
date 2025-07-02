@@ -8,6 +8,8 @@ func _ready():
 	spawn_mob()
 	$enemy.player=($Player)
 	$Diff.start()
+	$Life.player=($Player)
+
 
 func spawn_mob():
 	var mob = preload("res://escenas/mob.tscn").instantiate()

@@ -4,7 +4,7 @@ signal health_depleted
 @export var rotation_speed = 1.5
 var rotation_direction = 0
 var z = 0
-signal attacked
+signal attacked(hlt)
 signal positionb(pos: Vector2)
 
 
@@ -26,6 +26,8 @@ func _physics_process(delta: float) -> void:
 	var overlapping_bodies = $HurtBox.get_overlapping_bodies()
 	if overlapping_bodies.size() > 0:
 		health -= DAMAGE_RATE * overlapping_bodies.size() * delta
+		emit_signal("attacked", health )
+
 		%ProgressBar.value = health
 		%ProgressBar.max_value = 3.0
 
