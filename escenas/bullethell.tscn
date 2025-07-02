@@ -10,5 +10,5 @@ script = ExtResource("1_l5nui")
 [node name="Player" parent="." instance=ExtResource("1_bp5up")]
 position = Vector2(296, 296)
 
-[node name="Node2D" parent="." instance=ExtResource("3_l5nui")]
+[node name="enemy" parent="." instance=ExtResource("3_l5nui")]
 position = Vector2(857, 304)

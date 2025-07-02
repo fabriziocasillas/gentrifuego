@@ -5,6 +5,7 @@ signal health_depleted
 var rotation_direction = 0
 var z = 0
 signal attacked
+signal positionb(pos: Vector2)
 
 
 
@@ -27,3 +28,10 @@ func _physics_process(delta: float) -> void:
 		if health <= 0.0:
 			health_depleted.emit()
 			
+
+
+func _on_timer_timeout():
+	emit_signal("position_b", global_position)
+	print("el jugador da su pocision la cual es" )
+	print(global_position)
+	

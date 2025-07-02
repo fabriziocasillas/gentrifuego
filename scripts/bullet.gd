@@ -19,7 +19,6 @@ func _on_Bullet_body_entered(body):
 
 func disappear_after_delay() -> void:
 	await get_tree().create_timer(5).timeout
-	emit_signal("mob_died")
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
