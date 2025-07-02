@@ -2,6 +2,7 @@ extends Node2D
 var que
 signal bulletvelocity
 signal numofbullets
+signal specialattack
 var enemies = 0
 func _ready():
 	spawn_mob()
@@ -20,18 +21,22 @@ func spawn_enemy():
 
 
 func _on_diff_timeout() -> void:
+
+
 	que = randi() % 3 
 	print(que)
-	if(que == 1):
+	if(que == 4):
 		emit_signal("bulletvelocity")
-	elif(que == 2):
-		emit_signal("numofbullets")
-	elif(que == 0 && enemies<5):
+	elif(que < 3):
+		for enemy in get_tree().get_nodes_in_group("enemigos"):
+			enemy.increase_difficulty()
+	elif(que == 5 ):
+		emit_signal("specialattack")
+		
+		
+
+func _on_enemies_timeout() -> void:
+	print("viene nuevo enemgo")
+	if(enemies<5):
 		spawn_enemy()
 		enemies += enemies
-		
-		
-		
-		
-	
-	

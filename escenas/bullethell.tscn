@@ -16,4 +16,9 @@ position = Vector2(857, 304)
 [node name="Diff" type="Timer" parent="."]
 wait_time = 10.0
 
+[node name="Enemies" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
 [connection signal="timeout" from="Diff" to="." method="_on_diff_timeout"]
+[connection signal="timeout" from="Enemies" to="." method="_on_enemies_timeout"]
