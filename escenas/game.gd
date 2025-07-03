@@ -27,12 +27,12 @@ func _on_diff_timeout() -> void:
 
 	que = randi() % 3 
 	print(que)
-	if(que == 4):
+	if(que == 0):
 		emit_signal("bulletvelocity")
-	elif(que < 3):
+	elif(que == 1):
 		for enemy in get_tree().get_nodes_in_group("enemigos"):
 			enemy.increase_difficulty()
-	elif(que == 5 ):
+	elif(que == 2 ):
 		emit_signal("specialattack")
 		
 		
