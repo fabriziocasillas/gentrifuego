@@ -2,7 +2,8 @@
 extends Node2D
 
 # Seconds of a bullet
-var speed = 150
+var speed = 200
+var is_off_screen := false
 
 # Physical process method called 60 times/second
 func _physics_process(delta):
@@ -22,4 +23,11 @@ func disappear_after_delay() -> void:
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	disappear_after_delay()
+	is_off_screen = true
+	await get_tree().create_timer(15).timeout
+
+	if is_off_screen:
+		queue_free()
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	is_off_screen = false

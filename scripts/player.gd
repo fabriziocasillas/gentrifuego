@@ -6,20 +6,36 @@ var rotation_direction = 0
 var z = 0
 signal attacked(hlt)
 signal positionb(pos: Vector2)
+const DAMAGE_RATE = 0.5
+var is_dashing := false
+var dash_duration := 0.2
+var dash_timer := 0.0
+var can_dash := true
+var dash_cooldown := 1.0
+
 
 
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	const DAMAGE_RATE = 0.5
-	velocity = direction * 700
 
+	if is_dashing:
+		velocity = direction * 1000
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
+	else:
+		velocity = direction * 400
+		if Input.is_action_just_pressed("dash") and can_dash and direction != Vector2.ZERO:
+			is_dashing = true
+			dash_timer = dash_duration
+			can_dash = false
+			$DashCooldownTimer.start()
 	if direction != Vector2.ZERO:
 		look_at(global_position + direction)
-		rotation -= deg_to_rad(270)  # Ajuste de 90 grados
+		rotation -= deg_to_rad(270)  #
 
 	move_and_slide()
-
 
 
 		
@@ -36,8 +52,9 @@ func _physics_process(delta: float) -> void:
 			
 
 
-func _on_timer_timeout():
-	emit_signal("position_b", global_position)
-	print("el jugador da su pocision la cual es" )
-	print(global_position)
+
 	
+
+
+func _on_dash_cooldown_timers_timeout() -> void:
+	can_dash = true

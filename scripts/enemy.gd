@@ -8,7 +8,7 @@ var player: CharacterBody2D
 var player_position
 var direction
 var target_position: Vector2
-var speed := 1200.0
+var speed := 2000.0
 
 
 
@@ -25,7 +25,7 @@ func _physics_process(delta):
 		var direction = (target_position - global_position).normalized()
 		position += direction * speed * delta
 
-		if global_position.distance_to(target_position) < 10.0:
+		if global_position.distance_to(target_position) < 22.0:
 			target_position = Vector2.ZERO
 
 
@@ -47,8 +47,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if player:
 		var direction = player.global_position
 
-		var offset_x = randi() % 10 + 40
-		var offset_y = randi() % 10 + 40
+		var offset_x = randi() % 10 + 20
+		var offset_y = randi() % 10 + 20
 
 		if randi() % 2 == 0:
 			offset_x *= -1

@@ -42,3 +42,13 @@ func _on_enemies_timeout() -> void:
 	if(enemies<5):
 		spawn_enemy()
 		enemies = enemies +1
+
+
+func _on_player_health_depleted() -> void:
+	%Gamover.visible = true
+	get_tree().paused = true
+	
+func _unhandled_input(event):
+	if event.is_action_pressed("restart"):
+		get_tree().paused = false
+		get_tree().reload_current_scene()

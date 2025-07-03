@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dk0tc1ovges1d" path="res://scripts/life.gd" id="4_bxxmx"]
 
 [node name="game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_l5nui")
 
 [node name="Player" parent="." instance=ExtResource("1_bp5up")]
@@ -33,6 +34,34 @@ value = 3.0
 show_percentage = false
 script = ExtResource("4_bxxmx")
 
+[node name="Gamover" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Gamover"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 0.368627)
+
+[node name="Label" type="Label" parent="Gamover/ColorRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -23.0
+offset_right = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 75
+text = "GAME OVER"
+
 [connection signal="attacked" from="Player" to="Life" method="_on_player_attacked"]
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Diff" to="." method="_on_diff_timeout"]
 [connection signal="timeout" from="Enemies" to="." method="_on_enemies_timeout"]
