@@ -20,6 +20,8 @@ func _ready():
 	_on_visible_on_screen_notifier_2d_screen_exited()
 	add_to_group("enemigos")
 	adjust_bullet_speed_loop()
+	await get_tree().create_timer(5).timeout
+	go_to_screen_random()
 
 	randomize()
 
@@ -51,10 +53,14 @@ func _on_patron_timeout() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	go_to_player()
+
+
+func go_to_player() -> void:
 	if player:
 		var direction = player.global_position
 
-		var offset_x = randi() % 10 + 20
+		var offset_x = randi() % 50 + 30
 		var offset_y = randi() % 10 + 20
 
 		if randi() % 2 == 0:
@@ -63,8 +69,20 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 			offset_y *= -1
 
 		target_position = direction + Vector2(offset_x, offset_y)
+		
+func go_to_screen_random() -> void:
+	if player:
+		var direction = player.global_position
 
+		var offset_x = randi() % 100 + 200
+		var offset_y = randi() % 100 + 200
 
+		if randi() % 2 == 0:
+			offset_x *= -1
+		if randi() % 2 == 0:
+			offset_y *= -1
+
+		target_position = direction + Vector2(offset_x, offset_y)
 func increase_difficulty():
 	var tim = $Timer.wait_time
 	$Timer.wait_time = max(tim - 0.1, 0.4)
@@ -76,3 +94,7 @@ func adjust_bullet_speed_loop() -> void:
 
 		var increase = randi() % 25 + 20  # entre 20 y 44
 		bullet_speed += increase
+
+
+func _on_goto_timeout() -> void:
+	go_to_screen_random()

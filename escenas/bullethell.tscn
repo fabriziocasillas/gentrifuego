@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://chvvw3lntqbug"]
+[gd_scene load_steps=6 format=3 uid="uid://chvvw3lntqbug"]
 
 [ext_resource type="PackedScene" uid="uid://cl22ggaym5eui" path="res://escenas/player.tscn" id="1_bp5up"]
 [ext_resource type="Script" uid="uid://cbnfdau5hr5he" path="res://escenas/game.gd" id="1_l5nui"]
+[ext_resource type="Texture2D" uid="uid://winot6gyymah" path="res://sprites/spaceb.png" id="2_oyqkt"]
 [ext_resource type="PackedScene" uid="uid://ciith8xm4fqln" path="res://escenas/enemy.tscn" id="3_l5nui"]
 [ext_resource type="Script" uid="uid://dk0tc1ovges1d" path="res://scripts/life.gd" id="4_bxxmx"]
 
@@ -9,8 +10,24 @@
 process_mode = 3
 script = ExtResource("1_l5nui")
 
+[node name="Background" type="Parallax2D" parent="."]
+repeat_size = Vector2(4, 1)
+autoscroll = Vector2(0.2, 1)
+repeat_times = 5
+limit_begin = Vector2(0, 0)
+limit_end = Vector2(0, 0)
+
+[node name="BG" type="Sprite2D" parent="Background"]
+texture_filter = 1
+texture_repeat = 3
+position = Vector2(1, 0)
+scale = Vector2(2048, 1284.84)
+texture = ExtResource("2_oyqkt")
+region_enabled = true
+region_rect = Rect2(495.523, 234.225, 536.672, 690.455)
+
 [node name="Player" parent="." instance=ExtResource("1_bp5up")]
-position = Vector2(296, 296)
+position = Vector2(1178, 705)
 
 [node name="enemy" parent="." instance=ExtResource("3_l5nui")]
 position = Vector2(857, 304)
@@ -25,10 +42,11 @@ autostart = true
 [node name="Life" type="ProgressBar" parent="."]
 modulate = Color(0.712719, 0.999123, 0.707831, 1)
 self_modulate = Color(0.325867, 0.94, 0.188, 1)
+top_level = true
 offset_left = -48.0
-offset_top = -13.0
+offset_top = -12.0
 offset_right = 53.0
-offset_bottom = 14.0
+offset_bottom = 15.0
 max_value = 3.0
 value = 3.0
 show_percentage = false

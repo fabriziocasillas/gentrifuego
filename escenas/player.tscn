@@ -8,6 +8,9 @@
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_kkt6c")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1, -1)
@@ -32,8 +35,6 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_j7xnp")
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 

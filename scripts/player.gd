@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 			$DashCooldownTimer.start()
 	if direction != Vector2.ZERO:
 		look_at(global_position + direction)
-		rotation -= deg_to_rad(270)  #
+		rotation -= deg_to_rad(270)  
 
 	move_and_slide()
 

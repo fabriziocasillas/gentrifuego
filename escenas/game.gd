@@ -11,6 +11,10 @@ func _ready():
 	$Life.player=($Player)
 
 
+
+
+
+
 func spawn_mob():
 	var mob = preload("res://escenas/mob.tscn").instantiate()
 	mob.player = $Player
@@ -38,16 +42,16 @@ func _on_diff_timeout() -> void:
 		
 
 func _on_enemies_timeout() -> void:
-	print("viene nuevo enemgo")
-	if(enemies<5):
+	if enemies < 5:
 		spawn_enemy()
-		enemies = enemies +1
+		enemies += 1
 
 
 func _on_player_health_depleted() -> void:
 	%Gamover.visible = true
 	get_tree().paused = true
-	
+
+
 func _unhandled_input(event):
 	if event.is_action_pressed("restart"):
 		get_tree().paused = false
