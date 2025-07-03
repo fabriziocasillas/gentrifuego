@@ -13,6 +13,7 @@ var speed := 2000.0
 var change
 var bullet_speed = 150
 signal velchange
+var rotation_new = 0
 
 
 func _ready():
@@ -22,10 +23,12 @@ func _ready():
 	adjust_bullet_speed_loop()
 	await get_tree().create_timer(5).timeout
 	go_to_screen_random()
+	$Rotation.start()
 
 	randomize()
 
 func _physics_process(delta):
+	rotation = lerp_angle(self.rotation, rotation_new, delta * 2.0) 
 	if target_position != Vector2.ZERO:
 		var direction = (target_position - global_position).normalized()
 		position += direction * speed * delta
@@ -40,7 +43,7 @@ func _on_timer_timeout() -> void:
 		var bullet = bullet_scene.instantiate() 
 		bullet.global_position = global_position
 		
-		var angle = (2 * PI / lados) * i
+		var angle = rotation + (2 * PI / lados) * i
 		bullet.rotation = angle
 		
 		bullet.set_speed(bullet_speed) 
@@ -98,3 +101,8 @@ func adjust_bullet_speed_loop() -> void:
 
 func _on_goto_timeout() -> void:
 	go_to_screen_random()
+
+
+func _on_rotation_timeout() -> void:
+ 
+	rotation_new = randf() * TAU

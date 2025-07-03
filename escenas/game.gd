@@ -4,13 +4,13 @@ signal bulletvelocity
 signal numofbullets
 signal specialattack
 var enemies = 0
+var mobs = 0
 func _ready():
 	spawn_mob()
 	$enemy.player=($Player)
 	$Diff.start()
 	$Life.player=($Player)
-
-
+	$Mobs.start()
 
 
 
@@ -24,6 +24,7 @@ func spawn_enemy():
 	var enemy = preload("res://escenas/enemy.tscn").instantiate()
 	enemy.player = $Player
 	add_child(enemy)
+
 
 
 func _on_diff_timeout() -> void:
@@ -56,3 +57,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed("restart"):
 		get_tree().paused = false
 		get_tree().reload_current_scene()
+
+
+func _on_mobs_timeout() -> void:
+	mobs = randi()% 10 + 1
+	for x in mobs:
+		spawn_mob()

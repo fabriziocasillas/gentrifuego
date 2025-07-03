@@ -77,7 +77,15 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 75
 text = "GAME OVER"
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Mobs" type="Timer" parent="."]
+wait_time = 12.0
+
 [connection signal="attacked" from="Player" to="Life" method="_on_player_attacked"]
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Diff" to="." method="_on_diff_timeout"]
 [connection signal="timeout" from="Enemies" to="." method="_on_enemies_timeout"]
+[connection signal="timeout" from="Mobs" to="." method="_on_mobs_timeout"]
