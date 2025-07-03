@@ -7,6 +7,9 @@ var player: CharacterBody2D
 
 var player_position
 var direction
+var target_position: Vector2
+var speed := 1200.0
+
 
 
 func _ready():
@@ -16,6 +19,14 @@ func _ready():
 
 
 	randomize()
+
+func _physics_process(delta):
+	if target_position != Vector2.ZERO:
+		var direction = (target_position - global_position).normalized()
+		position += direction * speed * delta
+
+		if global_position.distance_to(target_position) < 10.0:
+			target_position = Vector2.ZERO
 
 
 func _on_timer_timeout() -> void:
@@ -34,17 +45,18 @@ func _on_patron_timeout() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if player:
-		direction = player.global_position
+		var direction = player.global_position
 
-	var offset_x = randi() % 10 + 40
-	var offset_y = randi() % 10 + 40
+		var offset_x = randi() % 10 + 40
+		var offset_y = randi() % 10 + 40
 
-	if randi() % 2 == 0:
-		offset_x *= -1
-	if randi() % 2 == 0:
-		offset_y *= -1
+		if randi() % 2 == 0:
+			offset_x *= -1
+		if randi() % 2 == 0:
+			offset_y *= -1
 
-	global_position = direction + Vector2(offset_x, offset_y)
+		target_position = direction + Vector2(offset_x, offset_y)
+
 
 func increase_difficulty():
 	var tim = $Timer.wait_time
